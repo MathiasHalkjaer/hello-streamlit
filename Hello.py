@@ -13,37 +13,57 @@
 # limitations under the License.
 
 import streamlit as st
+import pandas as pd
+import numpy as np
+
 from streamlit.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
 
-def run():
+
+
+
+df = pd.DataFrame({
+  'first column': [1, 2, 3, 4],
+  'second column': [10, 20, 30, 40]
+})
+
+def run():#sql-mhp-sandbox.database.windows.net
+    
     st.set_page_config(
-        page_title="Hello",
+        page_title="Hellos",
         page_icon="👋",
     )
 
-    st.write("# Welcome to Streamlit! 👋")
+    st.write("# :balloon: Welcome to Streamlit! 👋")
+
+    st.line_chart(df)
 
     st.sidebar.success("Select a demo above.")
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
+    map_data = pd.DataFrame(
+    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
+    columns=['lat', 'lon'])
+
+    st.map(map_data)
+
+    if st.checkbox('Show dataframe'):
+      chart_data = pd.DataFrame(
+        np.random.randn(20, 3),
+        columns=['a', 'b', 'c'])
+      chart_data
+
+    # Add a selectbox to the sidebar:
+    add_selectbox = st.sidebar.selectbox(
+      'How would you like to be contacted?',
+      ('Email', 'Home phone', 'Mobile phone')
+    )
+
+    # Add a slider to the sidebar:
+    add_slider = st.sidebar.slider(
+      'Select a range of values',
+      0.0, 100.0, (25.0, 75.0)
     )
 
 

@@ -3,3 +3,9 @@ numpy
 pandas
 pydeck
 streamlit
+pyodbc
+fastapi
+uvicorn[standard]
+pydantic
+azure-identity
+SQLAlchemy==1.4.0
