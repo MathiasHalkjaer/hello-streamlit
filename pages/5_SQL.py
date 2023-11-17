@@ -3,6 +3,7 @@ import pandas as pd
 
 # Streamlit app
 def main():
+    st.write("# :balloon: Welcome to Streamlit! 👋")
     conn = st.connection("sql")
     pet_owners = conn.query('select top 10 * from Sales.Customer')
     st.write("Test")
